@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tebak Angka ICP</title>
+  <script type="module">
+    import { backend } from "../../declarations/backend";
+
+    async function mulaiGame() {
+      const msg = await backend.startGame();
+      document.getElementById("log").textContent = msg;
+    }
+
+    async function kirimTebakan() {
+      const angka = parseInt(document.getElementById("inputAngka").value);
+      const hasil = await backend.guessNumber(angka);
+      document.getElementById("log").textContent = hasil;
+    }
+  </script>
+</head>
+<body>
+  <h1>🎮 Game Tebak Angka</h1>
+  <button onclick="mulaiGame()">Mulai Game</button><br><br>
+
+  <input type="number" id="inputAngka" placeholder="Masukkan tebakan" />
+  <button onclick="kirimTebakan()">Tebak</button>
+
+  <pre id="log"></pre>
+</body>
+</html>
